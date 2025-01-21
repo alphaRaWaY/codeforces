@@ -1,3 +1,9 @@
+/*
+若i>j,a[i]>a[j]
+val=a[i]-a[i]-(i-j)=(a[i]-i)-(a[j]-j);
+否则
+val=a[j]-a[i]-[i-j]=(-a[i]-i)-(-a[j]-j);
+*/
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
