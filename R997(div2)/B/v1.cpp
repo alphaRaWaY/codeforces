@@ -7,19 +7,28 @@ using namespace std;
 const int INF(0x3f3f3f3f);
 int ls(int a){return a<<1;}
 int rs(int a){return a<<1|1;}
-int n,m;
+const int MAXN(1e3+3);
+int n;
+int ans[MAXN];
 void solve()
 {
-    cin>>n>>m;
-    int ans(0);
+    cin>>n;
     inc(i,1,n)
     {
-        int a,b;
-        cin>>a>>b;
-        if(i!=1)ans+=a+b;
+        int pos(1);
+        string s;
+        cin>>s;
+        s="#"+s;
+        inc(j,1,n)
+        {
+            if((j<i&&s[j]=='1')||(j>i&&s[j]=='0'))
+            {
+                pos++;
+            }
+        }
+        ans[pos]=i;
     }
-    ans+=2*m;
-    cout<<2*ans<<endl;
+    inc(i,1,n)cout<<ans[i]<<" ";cout<<endl;
 }
 signed main()
 {
@@ -29,21 +38,21 @@ signed main()
     while(_--)solve();
     system("pause");
 }
-
 /*
 3
-4 3
-1 1
-2 2
-2 1
-1 2
-1 2
-1 1
-6 7
-3 6
-1 1
-3 1
-6 6
-5 4
-6 1
+1
+0
+5
+00101
+00101
+11001
+00001
+11110
+6
+000000
+000000
+000000
+000000
+000000
+000000
 */

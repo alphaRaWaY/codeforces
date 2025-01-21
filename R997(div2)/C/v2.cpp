@@ -7,43 +7,45 @@ using namespace std;
 const int INF(0x3f3f3f3f);
 int ls(int a){return a<<1;}
 int rs(int a){return a<<1|1;}
-int n,m;
+const int MAXN(1e3+3);
+int n;
 void solve()
 {
-    cin>>n>>m;
-    int ans(0);
-    inc(i,1,n)
+    cin>>n;
+    if(n==6)
     {
-        int a,b;
-        cin>>a>>b;
-        if(i!=1)ans+=a+b;
+        cout<<"1 1 2 3 1 2";
     }
-    ans+=2*m;
-    cout<<2*ans<<endl;
+    else if(n&1)
+    {
+        inc(i,1,n/2+1)cout<<i<<" ";
+        inc(i,1,n/2)cout<<i<<" ";
+    }
+    else
+    {
+        inc(i,1,n/2)cout<<i<<" ";
+        inc(i,1,n/2)cout<<i<<" ";
+    }
+    cout<<endl;
 }
 signed main()
 {
-    ios::sync_with_stdio(false);
+    // ios::sync_with_stdio(false);
     int _;
     cin>>_;
     while(_--)solve();
     system("pause");
 }
-
 /*
-3
-4 3
-1 1
-2 2
-2 1
-1 2
-1 2
-1 1
-6 7
-3 6
-1 1
-3 1
-6 6
-5 4
-6 1
+10
+6
+7
+8
+9
+12
+13
+15
+20
+23
+30
 */
