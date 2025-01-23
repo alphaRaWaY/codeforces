@@ -71,12 +71,27 @@ void insert(node n,node r)
     }
     if(shouldInsert)
     {
+        vector<node> childs;
+        childs.swap(r.child);
+        for(node c:childs)
+        {
+            if(n.contain(c))n.child.push_back(c);
+            else r.child.push_back(c);
+        }
         n.cal();
         r.child.push_back(n);
+        cout<<childs.size()<<"#"<<endl;
     }
     r.cal();
 }
 int n;
+void dfs(node n)
+{
+    cout<<n.l<<"-"<<n.r<<" : "<<endl;
+    for(node c:n.child)cout<<"["<<c.l<<","<<c.r<<"]";
+    cout<<endl;
+    for(node c:n.child)dfs(c);
+}
 void solve() {
     cin>>n;
     node root=node(0,n*2+1);
@@ -91,11 +106,11 @@ void solve() {
         }
         vis[l][r]=true;
         node newnode(l,r);
-        cout<<newnode.val<<"#"<<endl;
         insert(newnode,root);
         cout<<root.val<<" ";
     }
     cout<<endl;
+    dfs(root);
 }
 signed main() {
     fact[0] = 1;

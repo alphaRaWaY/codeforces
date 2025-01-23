@@ -1,6 +1,4 @@
-//使用结构体进行递归一定要使用引用
-//使用map判断是否出现过或者使用其他的STL容器记得clear
-//TL test7
+//更快的版本
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
@@ -57,14 +55,6 @@ struct node
     {
         return l<=n.l&&r>=n.r;
     }
-    void print()
-    {
-        cout<<l<<"-"<<r<<" , val = "<<val<<endl;
-        for(node c:child)
-        {
-            cout<<"["<<c.l<<"-"<<c.r<<"] :"<<c.val<<endl;
-        }
-    }   
 };
 void insertNode(node& n,node& r)
 {
@@ -91,18 +81,6 @@ void insertNode(node& n,node& r)
         r.child.push_back(n);
     }
     r.cal();
-}
-void bfs(node n)
-{
-    queue<node> q;
-    q.push(n);
-    while(!q.empty())
-    {
-        node top=q.front();
-        top.print();
-        q.pop();
-        for(node c:top.child)q.push(c);    
-    }
 }
 map<pii,bool> vis;
 int n;
@@ -134,22 +112,14 @@ void solve() {
     }
     cout<<endl;
 }
-void debug()
-{
-    node root(1,10);
-    node newnode1(6,7),newnode2(2,9);
-    insertNode(newnode1,root);
-    insertNode(newnode2,root);
-    bfs(root);
-}
 signed main() {
     fact[0] = 1;
-    for(int i = 1; i < MAX; i++) fact[i] = (long long) fact[i - 1] * i % mod;
+    inc(i,1,MAX)fact[i]=(long long)fact[i-1]*i%mod;
     inv_fact[MAX - 1] = binpow(fact[MAX - 1], mod - 2);
-    for(int i = MAX - 1; i; i--) inv_fact[i - 1] = (long long) inv_fact[i] * i % mod;
+    for(int i = MAX - 1; i; i--) inv_fact[i-1]=(long long)inv_fact[i]*i%mod;
     assert(inv_fact[0] == 1);
-    for(int i = 1; i < MAX; i++) inv[i] = (long long) inv_fact[i] * fact[i - 1] % mod;
-    // ios_base::sync_with_stdio(0);
+    inc(i,1,MAX)inv[i] = (long long) inv_fact[i] * fact[i - 1] % mod;
+    ios_base::sync_with_stdio(0);
     int _;
     cin>>_;
     while(_--) {
